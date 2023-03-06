@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 18:29:51 by grebin            #+#    #+#             */
-/*   Updated: 2023/02/06 20:34:34 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/01 14:02:26 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,6 @@ char 	**add_var(char *line, char **env);
 char 	**rm_var(char *line, char **env, int limit);
 char	**change_var(char *old, char *new, char **env, int limit);
 
+int	find_path(t_cmd *cmd, char *path);
+int set_path(t_cmd *cmd);
 #endif

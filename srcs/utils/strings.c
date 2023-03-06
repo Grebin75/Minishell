@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 17:40:15 by grebin            #+#    #+#             */
-/*   Updated: 2023/02/06 19:24:51 by grebin           ###   ########.fr       */
+/*   Updated: 2023/02/16 10:40:01 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,13 @@ int	ft_strncmp(const char *s1, const char *s2, int n)
 	(unsigned char)*(s2 + i - (n == i)));
 }
 
-void prints(char *str, char fd)
+int prints(char *str, char fd)
 {
 	int i;
 	i = ft_strlen(str);
 	write(fd, str, i);
 	write(fd, "\n", 1);
+	return (1);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)

@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:19:20 by hcoutinh          #+#    #+#             */
-/*   Updated: 2023/02/06 20:32:07 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/01 15:03:35 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ struct s_cmd
 {
 	int output;
 	int input;
+	int redirections[1];
+	int pid;
 	char	*path;
 	char	**cmd;
 	t_cmd	*next;

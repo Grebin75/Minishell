@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:48:52 by grebin            #+#    #+#             */
-/*   Updated: 2023/02/15 09:17:46 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/01 13:48:05 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,18 @@ int export(t_cmd *cmd, char **env)
 	return (0);
 }
 
-void add_pwd()
+int add_pwd()
 {
 	char *pwd;
 	char *temp;
 
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
-	{
-		perror("pwd");
-		return;
-	}
+		return (prints("PWD not found", 2));
 	temp = ft_strjoin("PWD=", pwd);
 	this()->env = add_var(temp, this()->env);
 	free(pwd);
+	return (0);
 }
 
 void change_pwd()
@@ -69,3 +67,41 @@ void change_pwd()
 	free(temp);
 }
 
+int is_nbr(char *str)
+{
+	int i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] < '0' && str[i] > '9')
+			return (1);
+	}
+	return (0);	
+}
+
+int exit_prog(t_cmd *cmd, int status)
+{
+	int argc;
+	
+
+	argc = 0;
+	prints("exit\n", 1);
+	while (cmd->cmd[++argc])
+		;
+	if (cmd->cmd[1] && is_nbr(cmd->cmd[1]))
+	{
+		prints(" numeric argument required\n", 2);
+		status = 1;
+	}
+	else if (argc > 2)
+	{
+		prints(" too many args", 2);
+		return (1);
+	}
+	else if (cmd->cmd[1])
+		status = ft_atoi(cmd->cmd[1]);
+	free_matrix(this()->env);
+	clear_history();
+	exit (status);
+}

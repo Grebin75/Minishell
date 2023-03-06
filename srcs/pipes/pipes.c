@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strings.h                                          :+:      :+:    :+:   */
+/*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 17:43:15 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/01 13:40:06 by grebin           ###   ########.fr       */
+/*   Created: 2023/02/15 11:49:43 by grebin            #+#    #+#             */
+/*   Updated: 2023/02/15 11:56:34 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRINGS_H
-# define STRINGS_H
+#include "../../pipes.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
+void pipe_handler(t_cmd *cmd)
+{
+	
+	
+}
 
-int		ft_strlen(const char *s);
-char	*ft_strdup(const char *s1);
-int		ft_strncmp(const char *s1, const char *s2, int n);
-int 	prints(char *str, char fd);
-char	*ft_strjoin(char const *s1, char const *s2);
-
-
-long	ft_atoi(char *s);
-#endif

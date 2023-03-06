@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 17:02:48 by grebin            #+#    #+#             */
-/*   Updated: 2023/02/15 08:32:30 by grebin           ###   ########.fr       */
+/*   Updated: 2023/02/16 11:13:39 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int cd(t_cmd *cmd, char **env)
 		add_pwd();
 	if (cmd->cmd[2])
 	{
-		prints("too many arguments", 1);
+		prints("too many arguments", 2);
 		return (1);
 	}	
 	if (chdir(cmd->cmd[1]))

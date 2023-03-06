@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:07:54 by grebin            #+#    #+#             */
-/*   Updated: 2023/02/06 22:31:41 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/01 13:46:26 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int export(t_cmd *cmd, char **env);
 int cd(t_cmd *cmd, char **env);
 
 void change_pwd();
-void add_pwd();
+int add_pwd();
 
 #endif

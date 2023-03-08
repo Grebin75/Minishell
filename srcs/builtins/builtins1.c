@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:48:52 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/01 13:48:05 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/06 09:04:34 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int exit_prog(t_cmd *cmd, int status)
 	}
 	else if (cmd->cmd[1])
 		status = ft_atoi(cmd->cmd[1]);
+	rmlist(&this()->cmds);
 	free_matrix(this()->env);
 	clear_history();
 	exit (status);

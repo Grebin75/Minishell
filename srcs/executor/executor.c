@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 08:20:18 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/01 15:12:03 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/06 10:04:29 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,17 @@ int cmd_handler(char **env, int input, int output)
 {
 	this()->cmds->pid = fork();
 	if (this()->cmds->pid == -1)
-		prints("Error creating second fork", 1);
+		prints("Error creating second fork", 2);
 	if (this()->cmds->pid == 0)
 	{
-		if (dup2(input, STDIN_FILENO) == -1)
-			prints("Error on first Dup2", 1);
-		if (dup2(output, STDOUT_FILENO) == -1)
-			prints("Error on second Dup2", 1);
+		if(input != 0)
+			if (dup2(input, STDIN_FILENO) == -1)
+				prints("Error on first Dup2", 2);
+		if(output != 1)
+			if (dup2(output, STDOUT_FILENO) == -1)
+				prints("Error on second Dup2", 2);
 		if (execve(this()->cmds->path, this()->cmds->cmd, env) == -1)
-			prints("Error executing command", 1);
+			prints("Error executing command", 2);
 		close(input);
 		close(output);
 	}

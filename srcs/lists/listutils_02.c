@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:13:43 by hcoutinh          #+#    #+#             */
-/*   Updated: 2023/02/06 20:31:05 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/06 09:03:36 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,22 @@ t_cmd	*listcall(void)
 	static t_cmd	list;
 
 	return (&list);
+}
+
+
+// Retturn node index
+
+int lstindex(t_cmd *arg, t_cmd *list)
+{
+	int	i;
+
+	i = 0;
+	while (list)
+	{
+		if (arg == list)
+			break;
+		list = list->next;
+		i++;
+	}
+	return (i);
 }

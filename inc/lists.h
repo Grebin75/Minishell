@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:19:20 by hcoutinh          #+#    #+#             */
-/*   Updated: 2023/03/01 15:03:35 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/06 09:03:53 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ t_cmd	*selectnode(t_cmd *list, int n);
 int		listsize(t_cmd *list);
 t_cmd	*listcall(void);
 void	printlist(t_cmd *list);
+int lstindex(t_cmd *arg, t_cmd *list);
 
 #endif

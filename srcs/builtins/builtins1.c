@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:48:52 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/06 09:04:34 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/08 13:33:43 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,13 @@ int is_nbr(char *str)
 		if (str[i] < '0' && str[i] > '9')
 			return (1);
 	}
-	return (0);	
+	return (0);
 }
 
 int exit_prog(t_cmd *cmd, int status)
 {
 	int argc;
-	
+
 
 	argc = 0;
 	prints("exit\n", 1);

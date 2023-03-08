@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 08:20:18 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/06 10:04:29 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/08 12:04:10 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void builtins(t_cmd *cmd)
 		this()->status = env(cmd, this()->env, cmd->output);
 	if (ft_strncmp("pwd", cmd->cmd[0], 4) == 0)
 		this()->status = pwd(cmd->output);
-/* 	if (ft_strncmp("exit", cmd->cmd[0], 3) == 0)
-		exit(cmd, this()->status); */
+	if (ft_strncmp("exit", cmd->cmd[0], 3) == 0)
+		exit_prog(cmd, this()->status);
 	rmnode(&this()->cmds);
 }
 
@@ -50,8 +50,10 @@ int cmd_handler(char **env, int input, int output)
 		close(input);
 		close(output);
 	}
-	close(output);
-	close(input);
+	if (output != 1)
+		close(output);
+	if (input != 0)
+		close(input);
 	rmnode(&this()->cmds);
 	return (0);
 }

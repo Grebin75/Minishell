@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 08:21:06 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/06 09:13:14 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/08 12:00:56 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 #include <fcntl.h>
+#include <sys/wait.h>
 
 # include <readline/readline.h>
 # include <readline/history.h>

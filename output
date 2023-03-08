@@ -1,7 +1,0 @@
-total 184
--rw-r--r--   1 grebin  staff   1792  1 Mar 13:40 Makefile
-drwxr-xr-x  11 grebin  staff    352 15 Fev 08:21 inc
--rwxr-xr-x   1 grebin  staff  83574  6 Mar 09:59 minishell
-drwxr-xr-x   8 grebin  staff    256  6 Mar 09:59 objs
--rw-r--r--   1 grebin  staff    344  6 Mar 10:00 output
-drwxr-xr-x  10 grebin  staff    320  6 Mar 09:26 srcs

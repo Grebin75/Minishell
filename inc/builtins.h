@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:07:54 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/01 13:46:26 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/08 12:06:07 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int cd(t_cmd *cmd, char **env);
 
 void change_pwd();
 int add_pwd();
+int exit_prog(t_cmd *cmd, int status);
 
 #endif

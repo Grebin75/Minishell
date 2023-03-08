@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 08:52:38 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/06 10:05:58 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/08 13:58:21 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,21 @@
 
 int prep_fd(t_cmd *cmd)
 {
-	if (cmd->redirections[0] = Single)
-		cmd->input = prep_input(cmd);
-	else
-		cmd->input = heredocs();
-	if (cmd->redirections[1] = Single)
-		cmd->output = open(cmd->cmd[0], O_CREAT | O_TRUNC | O_WRONLY, 0644);
-	else
-		cmd->output = open(cmd->cmd[0], O_CREAT | O_APPEND | O_WRONLY, 0644);
-	
+	while (cmd->red)
+	{
+		if (cmd->red->in == 1)
+			cmd->input = cmd->red->fd;
+		if (cmd->red->in == 2)
+			cmd->input = heredocs(cmd, cmd->red);
+		if (cmd->red->out != 1)
+			cmd->output = open(cmd->cmd[0], O_CREAT | O_TRUNC | O_WRONLY, 0644);
+		if (cmd->red->out != 2)
+			cmd->output = open(cmd->cmd[0], O_CREAT | O_APPEND | O_WRONLY, 0644);
+		cmd->red = cmd->red->next;
+	}
 }
 
-int prep_input()
-{
-	int fd;
-
-	if ()
-	return (fd);
-}
 int heredocs()
 {
-	
+
 }

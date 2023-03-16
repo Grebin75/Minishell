@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:13:25 by gabriel           #+#    #+#             */
-/*   Updated: 2023/03/08 13:32:54 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2023/03/16 11:04:42 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ void testinit()
 	str = malloc(sizeof(char *) * (2 + 1));
 	if (!str)
 		return ;
-	str[0] = alloc_string("export");
-	str[1] = alloc_string("ahshdh=273468");
+	str[0] = alloc_string("grep");
+	str[1] = alloc_string("a");
 	str[2] = NULL;
 	addtolast(&this()->cmds, createnode(str));
+	addred(&this()->cmds->red, createred(2, 12, 0, alloc_string("123")));
+	addred(&this()->cmds->red, createred(2, 12, 0, alloc_string("Abc")));
 	stri = malloc(sizeof(char *) * (2 + 1));
 	stri[0] = alloc_string("export");
 	stri[1] = alloc_string("ahshdh");
@@ -51,14 +53,18 @@ int	main(int ac, char **av, char **ev)
 	testinit();
 
 	this()->env = create_env(ev);
+	prep_fd(this()->cmds);
 	//this()->env = change_var("PATH=", "PATH=12323", this()->env, ft_strlen("PATH="));
 	//unset(this()->cmds);
 	//cd(this()->cmds->next, this()->env);
-	//executor(this()->cmds);
-	export(this()->cmds, this()->env);
+	
+	set_path(this()->cmds);
+	//this()->cmds->input = open("output", O_RDONLY);
+	//printf("%i\n", this()->cmds->input);
+	executor(this()->cmds);
+	/* export(this()->cmds, this()->env);
 	export(this()->cmds->next, this()->env);
-	this()->cmds->output = open("output", O_WRONLY);
-	//set_path(this()->cmds);
+	this()->cmds->output = open("output", O_WRONLY); */
 	//executor(this()->cmds);
 	/* dup2(input, STDERR_FILENO);
 	dup2(output, STDOUT_FILENO); */
@@ -66,11 +72,11 @@ int	main(int ac, char **av, char **ev)
 	//executor(this()->cmds);
 	//printf("%s\n", this()->cmds);
 	//printlist(this()->cmds);
-	while (this()->env[++i])
-		prints(this()->env[i], 1);
+	/* while (this()->env[++i])
+		prints(this()->env[i], 1); */
 	//printf("Status: %d\n", this()->status);
 	//env(this()->cmds, this()->env, 1);
-	free_matrix(this()->env);
+	//free_matrix(this()->env);
 	rmlist(&this()->cmds);
 
 

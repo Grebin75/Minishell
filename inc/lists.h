@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lists.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:19:20 by hcoutinh          #+#    #+#             */
-/*   Updated: 2023/03/08 13:53:38 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2023/03/16 08:46:01 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ struct s_red
 
 struct s_cmd
 {
-	int output;
-	int input;
-	int pid;
+	int 	output;
+	int 	input;
+	int 	pid;
+	int 	lasthere;
 	char	*path;
 	char	**cmd;
 	t_red	*red;
@@ -52,4 +53,8 @@ t_cmd	*listcall(void);
 void	printlist(t_cmd *list);
 int lstindex(t_cmd *arg, t_cmd *list);
 
+
+void rmred(t_red **red, int list);
+t_red	*addred(t_red **list, t_red *new);
+t_red *createred(int in, int out, int fd, char *delim);
 #endif

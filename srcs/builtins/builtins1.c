@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:48:52 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/08 13:33:43 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2023/03/20 12:41:12 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int export(t_cmd *cmd, char **env)
 	if (!cmd->cmd[1])
 		return (1);
 	temp = ft_strdup(cmd->cmd[1]);
-	while (temp[++i] != '=' && temp[i])
-		;
 	if (!temp[i])
 		return (0);
-	if (check_var(temp, env, i))
+	while (temp[++i] != '=' && temp[i])
+		;
+	if (check_var(temp, env, ++i))
 		this()->env = change_var(temp, temp, env, i);
 	else
 		this()->env = add_var(temp, env);

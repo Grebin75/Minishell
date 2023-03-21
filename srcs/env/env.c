@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 17:28:40 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/08 13:23:07 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2023/03/20 12:25:05 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ char **add_var(char *line, char **env)
 	temp = env;
 	env = alloc_matrix(env, 1);
 	i = -1;
-	//ADD CHECK DE DUPE
 	while (temp[++i])
 	{
 		env[i] = ft_strdup(temp[i]);

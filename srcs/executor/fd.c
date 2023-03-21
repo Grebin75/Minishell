@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 08:52:38 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/16 11:05:53 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/21 15:26:05 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int heredocs(t_red *red)
 		arg = ft_strjoin(arg, temp1);
 		free(temp1);
 	}
-	//printf("%s", arg);
 	return (prep_heredocs(arg));
 }
 

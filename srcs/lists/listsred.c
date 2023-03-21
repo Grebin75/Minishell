@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 08:28:28 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/16 09:09:01 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/20 12:10:00 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ void rmred(t_red **red, int list)
 	t_red	*temp;
 	
 	i  = 0;
-	temp = *red;
 	while (*red && i == 0)
 	{
+		temp = *red;
 		(*red) = (*red)->next;
 		if (temp->delim)
 			free(temp->delim);
-		free(temp);
 		if (list == 0)
 			i++;
+		free(temp);
 	}
 }

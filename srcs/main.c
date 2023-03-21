@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:13:25 by gabriel           #+#    #+#             */
-/*   Updated: 2023/03/16 11:04:42 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/20 12:40:37 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void testinit()
 	addred(&this()->cmds->red, createred(2, 12, 0, alloc_string("Abc")));
 	stri = malloc(sizeof(char *) * (2 + 1));
 	stri[0] = alloc_string("export");
-	stri[1] = alloc_string("ahshdh");
+	stri[1] = alloc_string("ABCD=1");
 	stri[2] = NULL;
 
 	addtolast(&this()->cmds, createnode(stri));
@@ -53,15 +53,15 @@ int	main(int ac, char **av, char **ev)
 	testinit();
 
 	this()->env = create_env(ev);
-	prep_fd(this()->cmds);
+	//prep_fd(this()->cmds);
 	//this()->env = change_var("PATH=", "PATH=12323", this()->env, ft_strlen("PATH="));
 	//unset(this()->cmds);
 	//cd(this()->cmds->next, this()->env);
 	
-	set_path(this()->cmds);
+	//set_path(this()->cmds);
 	//this()->cmds->input = open("output", O_RDONLY);
 	//printf("%i\n", this()->cmds->input);
-	executor(this()->cmds);
+	//executor(this()->cmds);
 	/* export(this()->cmds, this()->env);
 	export(this()->cmds->next, this()->env);
 	this()->cmds->output = open("output", O_WRONLY); */
@@ -72,11 +72,17 @@ int	main(int ac, char **av, char **ev)
 	//executor(this()->cmds);
 	//printf("%s\n", this()->cmds);
 	//printlist(this()->cmds);
-	/* while (this()->env[++i])
-		prints(this()->env[i], 1); */
 	//printf("Status: %d\n", this()->status);
 	//env(this()->cmds, this()->env, 1);
 	//free_matrix(this()->env);
+	//char *line = alloc_string("ABC=4");
+	export(this()->cmds->next, this()->env);
+	while (this()->env[++i])
+		prints(this()->env[i], 1);
+	/* while (this()->env[++i])
+		prints(this()->env[i], 1); */
+	//printf("Var: %s\n", check_var("HOME=", this()->env, 5));
+	//printf("Var: %s\n", check_var("ABC", this()->env, 3));
 	rmlist(&this()->cmds);
 
 

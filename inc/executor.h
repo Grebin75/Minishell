@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 08:21:06 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/16 09:54:05 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/23 10:31:53 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-#include <fcntl.h>
-#include <sys/wait.h>
+# include <fcntl.h>
+# include <sys/wait.h>
 
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -29,12 +29,8 @@
 # include "struct.h"
 # include "lists.h"
 
-#define Single 1
-#define Double 2
-
-void executor(t_cmd *cmd);
-void builtins(t_cmd *cmd);
-
-void prep_fd(t_cmd *cmd);
+void	executor(t_cmd *cmd);
+void	builtins(t_cmd *cmd);
+int		heredocs(char *delim);
 
 #endif

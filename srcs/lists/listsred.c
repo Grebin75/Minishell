@@ -6,15 +6,15 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 08:28:28 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/20 12:10:00 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/21 15:33:42 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/lists.h"
 
-t_red *createred(int in, int out, int fd, char *delim)
+t_red	*createred(int in, int out, int fd, char *delim)
 {
-	t_red *red;
+	t_red	*red;
 
 	red = malloc(sizeof(t_red));
 	if (!red)
@@ -56,8 +56,8 @@ void rmred(t_red **red, int list)
 		(*red) = (*red)->next;
 		if (temp->delim)
 			free(temp->delim);
+		free(temp);
 		if (list == 0)
 			i++;
-		free(temp);
 	}
 }

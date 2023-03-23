@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:13:25 by gabriel           #+#    #+#             */
-/*   Updated: 2023/03/20 12:40:37 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/23 16:56:53 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,39 @@ void testinit()
 	char **str;
 	char **stri;
 
-	str = malloc(sizeof(char *) * (2 + 1));
+	str = malloc(sizeof(char *) * (4 + 1));
 	if (!str)
 		return ;
 	str[0] = alloc_string("grep");
-	str[1] = alloc_string("a");
-	str[2] = NULL;
-	addtolast(&this()->cmds, createnode(str));
-	addred(&this()->cmds->red, createred(2, 12, 0, alloc_string("123")));
-	addred(&this()->cmds->red, createred(2, 12, 0, alloc_string("Abc")));
+	str[1] = alloc_string("ab");
+	str[2] = alloc_string("<<");
+	str[3] = alloc_string("a");
+	str[4] = NULL;
+	//parse_main(str);
+	//cmd_split(str, 0);
+	//addtolast(&this()->cmds, createnode(str));
+	//addred(&this()->cmds->red, createred(0, 12, 0, alloc_string("123")));
+	//addred(&this()->cmds->red, createred(0, 12, 0, alloc_string("Abc")));
 	stri = malloc(sizeof(char *) * (2 + 1));
-	stri[0] = alloc_string("export");
-	stri[1] = alloc_string("ABCD=1");
+	stri[0] = alloc_string("ls");
+	stri[1] = alloc_string("-l");
 	stri[2] = NULL;
+	//parse_main(stri);
+	parse_main(str);
 
-	addtolast(&this()->cmds, createnode(stri));
+
+	//addtolast(&this()->cmds, createnode(stri));
 	//printlist((t_list *)this()->cmds->next);
 }
-
+int	printerror(char *str)
+{
+	if (*str)
+		prints(str, 1);
+	if (this()->env)
+		free_matrix(this()->env);
+	rmlist(&this()->cmds);
+	exit (1);
+}
 
 int	main(int ac, char **av, char **ev)
 {
@@ -50,14 +65,19 @@ int	main(int ac, char **av, char **ev)
 	(void)ev;
 	(void)i;
 
+	this()->env = create_env(ev);
 	testinit();
 
-	this()->env = create_env(ev);
+	set_path(this()->cmds);
+	this()->cmds->input = open("a", O_RDONLY);
+	executor(this()->cmds);
+	//set_path(this()->cmds);
+	//this()->cmds->input = open("a", O_RDONLY);
+	//executor(this()->cmds);
 	//prep_fd(this()->cmds);
 	//this()->env = change_var("PATH=", "PATH=12323", this()->env, ft_strlen("PATH="));
 	//unset(this()->cmds);
 	//cd(this()->cmds->next, this()->env);
-	
 	//set_path(this()->cmds);
 	//this()->cmds->input = open("output", O_RDONLY);
 	//printf("%i\n", this()->cmds->input);
@@ -68,21 +88,13 @@ int	main(int ac, char **av, char **ev)
 	//executor(this()->cmds);
 	/* dup2(input, STDERR_FILENO);
 	dup2(output, STDOUT_FILENO); */
-	//set_path(this()->cmds);
-	//executor(this()->cmds);
 	//printf("%s\n", this()->cmds);
 	//printlist(this()->cmds);
+	/* while (this()->env[++i])
+		prints(this()->env[i], 1); */
 	//printf("Status: %d\n", this()->status);
 	//env(this()->cmds, this()->env, 1);
 	//free_matrix(this()->env);
-	//char *line = alloc_string("ABC=4");
-	export(this()->cmds->next, this()->env);
-	while (this()->env[++i])
-		prints(this()->env[i], 1);
-	/* while (this()->env[++i])
-		prints(this()->env[i], 1); */
-	//printf("Var: %s\n", check_var("HOME=", this()->env, 5));
-	//printf("Var: %s\n", check_var("ABC", this()->env, 3));
 	rmlist(&this()->cmds);
 
 
@@ -91,10 +103,14 @@ int	main(int ac, char **av, char **ev)
 
 /* int main()
 {
+	char *str;
 	this()->env = create_env(ev);
 	while (1)
 	{
-		get_arg();
+		str = readline("$minishell:");
+		if (str && *str)
+			add_history(str);
+		parse_main(str);
 		executor(this()->cmds);
 	}
 } */

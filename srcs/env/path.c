@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:59:59 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/01 14:56:26 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/23 10:21:37 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*fusion_path(char *s1, char *s2)
 	i += len(s1) + len(s2);
 	s3 = malloc(sizeof(char) * (i + 2));
 	if (!s3)
-		return (NULL);
+		printerror("malloc error");
 	while (s1[++j] && j < len(s1))
 		s3[++k] = s1[j];
 	s3[++k] = '/';

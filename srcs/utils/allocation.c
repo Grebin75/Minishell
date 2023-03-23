@@ -6,16 +6,16 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:22:25 by grebin            #+#    #+#             */
-/*   Updated: 2023/02/06 16:48:23 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/23 10:21:12 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/allocation.h"
-
-char **alloc_matrix(char **matrix, int change)
+#include <minishell.h>
+//EXIT PROG ON RETURN NULL
+char	**alloc_matrix(char **matrix, int change)
 {
-	int i;
-	char **new;
+	int		i;
+	char	**new;
 
 	i = -1;
 	if (!matrix)
@@ -24,29 +24,29 @@ char **alloc_matrix(char **matrix, int change)
 		;
 	new = malloc(sizeof(char *) * ((i + 1) + change));
 	if (!new)
-		return (NULL); // EXIT PROG
+		printerror("malloc error");
 	return (new);
 }
 
-void free_matrix(char **matrix)
+void	free_matrix(char **matrix)
 {
-	int i;
-	
+	int	i;
+
 	i = -1;
 	if (!matrix)
-		return;
+		return ;
 	while (matrix[++i])
 		free(matrix[i]);
 	free(matrix);
 }
 
-char *alloc_string(char *string)
+//EXIT PROG ON RETURN NULL
+char	*alloc_string(char *string)
 {
-	int i;
-	int j;
-	char *new;
+	int		i;
+	int		j;
+	char	*new;
 
-	
 	i = -1;
 	j = -1;
 	if (!string && !*string)
@@ -55,7 +55,7 @@ char *alloc_string(char *string)
 		;
 	new = malloc(sizeof(char) * (i + 1));
 	if (!new)
-		return (NULL); // EXIT PROG
+		printerror("malloc error");
 	while (string[++j])
 		new[j] = string[j];
 	new[j] = 0;

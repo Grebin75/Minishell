@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 13:44:02 by hcoutinh          #+#    #+#             */
-/*   Updated: 2023/03/20 12:08:59 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/23 10:54:50 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ t_cmd	*createnode(char **cmd)
 	objs->output = 1;
 	objs->path = NULL;
 	objs->cmd = cmd;
-	objs->red = NULL;
 	objs->next = NULL;
 	return (objs);
 }
@@ -81,8 +80,6 @@ void	rmnode(t_cmd **list)
 	}
 	if (temp->path)
 		free(temp->path);
-	if (temp->red)
-		rmred(&temp->red, 1);
 	if (temp)
 		free(temp);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   strings1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gade-alm <gade-alm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 13:39:06 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/01 13:46:05 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/16 17:03:20 by gade-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/strings.h"
+#include <minishell.h>
 
 long	ft_atoi(char *s)
 {

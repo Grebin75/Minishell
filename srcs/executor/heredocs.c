@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fd.c                                               :+:      :+:    :+:   */
+/*   heredocs.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 08:52:38 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/21 15:26:05 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/23 16:55:26 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,34 @@ int prep_heredocs(char *arg)
 	if (pipe(fd) == -1)
 		return (-1);
 	n = ft_strlen(arg);
+	printf("%s", arg);
 	write(fd[1], arg, n);
 	return (fd[0]);
 }
 
-int heredocs(t_red *red)
+char *rm_null(char *string)
+{
+	int		i;
+	int		j;
+	char	*new;
+
+	i = -1;
+	j = -1;
+	if (!string && !*string)
+		return (NULL);
+	while (string[++i])
+		;
+	//printf("%s", string);
+	new = malloc(sizeof(char) * i);
+	if (!new)
+		printerror("malloc error");
+	while (string[++j])
+		new[j] = string[j];
+	//free(string);
+	return (new);
+}
+
+int heredocs(char *delim)
 {
 	char *temp;
 	char *temp1;
@@ -33,38 +56,13 @@ int heredocs(t_red *red)
 	
 	temp = NULL;
 	arg = NULL;
-	while (ft_strncmp(temp, red->delim, ft_strlen(temp)) != 0)
+	while (ft_strncmp(temp, delim, ft_strlen(temp)) != 0)
 	{
 		free(temp);
-		temp = readline("Minishell: ");
+		temp = readline("<<: ");
 		temp1 = ft_strjoin(temp, "\n");
 		arg = ft_strjoin(arg, temp1);
 		free(temp1);
 	}
 	return (prep_heredocs(arg));
-}
-
-void prep_fd(t_cmd *cmd)
-{
-	while (cmd->red)
-	{
-		if (cmd->red->in != 0 && cmd->input != 0)
-			close (cmd->input);
-		if (cmd->red->out != 1 && cmd->output != 1)
-			close (cmd->output);
-		if (cmd->red->in == 1)
-			cmd->input = cmd->red->fd;
-		if (cmd->red->in == 2)
-		{
-			if (cmd->lasthere != 0)
-				close(cmd->lasthere);
-			cmd->input = heredocs(cmd->red);
-			cmd->lasthere = cmd->input;
-		}
-		if (cmd->red->out == 1)
-			cmd->output = open(cmd->cmd[0], O_CREAT | O_TRUNC | O_WRONLY, 0644);
-		if (cmd->red->out == 2)
-			cmd->output = open(cmd->cmd[0], O_CREAT | O_APPEND | O_WRONLY, 0644);
-		cmd->red = cmd->red->next;
-	}
 }

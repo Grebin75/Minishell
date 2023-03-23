@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gade-alm <gade-alm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 17:28:40 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/20 12:25:05 by grebin           ###   ########.fr       */
+/*   Created: 2023/03/16 16:25:24 by gade-alm          #+#    #+#             */
+/*   Updated: 2023/03/16 17:04:22 by gade-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/env.h"
+#include <minishell.h>
 
-
-char *check_var(char *line, char **env, int limit)
+char	*check_var(char *line, char **env, int limit)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (env[++i])
@@ -26,8 +25,8 @@ char *check_var(char *line, char **env, int limit)
 
 char	**change_var(char *old, char *new, char **env, int limit)
 {
-	int i;
-	char *temp;
+	int		i;
+	char	*temp;
 
 	i = -1;
 	while (env[++i])
@@ -43,10 +42,11 @@ char	**change_var(char *old, char *new, char **env, int limit)
 	return (env);
 }
 
-char **add_var(char *line, char **env)
+//ADD CHECKDUPE AFTER i=-1
+char	**add_var(char *line, char **env)
 {
-	int i;
-	char **temp;
+	int		i;
+	char	**temp;
 
 	temp = env;
 	env = alloc_matrix(env, 1);
@@ -63,13 +63,14 @@ char **add_var(char *line, char **env)
 	env[i] = line;
 	env[++i] = NULL;
 	free_matrix(temp);
-	return(env);
+	return (env);
 }
-char **rm_var(char *line, char **env, int limit)
+
+char	**rm_var(char *line, char **env, int limit)
 {
-	int i;
-	int j;
-	char **temp;
+	int		i;
+	int		j;
+	char	**temp;
 
 	j = -1;
 	temp = env;
@@ -92,10 +93,10 @@ char **rm_var(char *line, char **env, int limit)
 	return (env);
 }
 
-char **create_env(char **env)
+char	**create_env(char **env)
 {
-	char **new;
-	int i;
+	char	**new;
+	int		i;
 
 	new = alloc_matrix(env, 0);
 	i = -1;

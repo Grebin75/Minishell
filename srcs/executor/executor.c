@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 08:20:18 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/16 10:53:54 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/23 13:21:56 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int cmd_handler(char **env, int input, int output)
 		if(output != 1)
 			if (dup2(output, STDOUT_FILENO) == -1)
 				prints("Error on second Dup2", 2);
+		//printf("Sai c\n");
 		if (execve(this()->cmds->path, this()->cmds->cmd, env) == -1)
 			prints("Error executing command", 2);
 		close(input);
@@ -54,8 +55,9 @@ int cmd_handler(char **env, int input, int output)
 		close(output);
 	if (input != 0)
 		close(input);
+	//printf("Sai f\n");
 	rmnode(&this()->cmds);
-	//wait(NULL);
+	wait(NULL);
 	return (0);
 }
 
@@ -69,4 +71,5 @@ void executor(t_cmd *cmd)
 		builtins(cmd);
 	else
 		cmd_handler(this()->env, cmd->input, cmd->output);
+	wait(NULL);
 }

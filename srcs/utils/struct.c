@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   struct.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gade-alm <gade-alm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:19:10 by grebin            #+#    #+#             */
-/*   Updated: 2023/02/03 17:20:02 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/17 12:36:12 by gade-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/struct.h"
 
-t_shell *this()
+t_shell	*this()
 {
-	static t_shell shell;
+	static t_shell	shell;
 
 	return (&shell);
-	
 }

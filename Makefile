@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: grebin <grebin@student.42.fr>              +#+  +:+       +#+         #
+#    By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/25 10:52:52 by gabriel           #+#    #+#              #
-#    Updated: 2023/03/23 10:54:07 by grebin           ###   ########.fr        #
+#    Updated: 2023/03/28 14:39:29 by hcoutinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,8 @@ SRCS		= $(SRCS_DIR)/main.c \
 			$(SRCS_DIR)/builtins/builtins1.c \
 			$(SRCS_DIR)/lists/listutils_01.c \
 			$(SRCS_DIR)/lists/listutils_02.c \
-						
-		
+
+
 
 SRCS_DIR	= srcs
 
@@ -52,7 +52,7 @@ endif
 
 CC			= cc
 
-CFLAGS 		= -Wall -Wextra -Werror $(INC) -g -fsanitize=address
+CFLAGS 		= -Wall -Wextra -Werror $(INC) -g #-fsanitize=address
 
 RM 			= rm -rf
 
@@ -67,7 +67,7 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 
 clean:
 	$(RM) $(OBJS_DIR) a.out
-	
+
 fclean: clean
 	$(RM) $(NAME) $(OBJS)
 

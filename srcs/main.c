@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:13:25 by gabriel           #+#    #+#             */
-/*   Updated: 2023/03/23 16:56:53 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/28 14:41:21 by hcoutinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 void testinit()
 {
 	char **str;
-	char **stri;
+	//char **stri;
 
 	str = malloc(sizeof(char *) * (4 + 1));
 	if (!str)
@@ -32,12 +32,13 @@ void testinit()
 	//addtolast(&this()->cmds, createnode(str));
 	//addred(&this()->cmds->red, createred(0, 12, 0, alloc_string("123")));
 	//addred(&this()->cmds->red, createred(0, 12, 0, alloc_string("Abc")));
-	stri = malloc(sizeof(char *) * (2 + 1));
+	/* stri = malloc(sizeof(char *) * (2 + 1));
 	stri[0] = alloc_string("ls");
 	stri[1] = alloc_string("-l");
-	stri[2] = NULL;
+	stri[2] = NULL; */
 	//parse_main(stri);
-	parse_main(str);
+	//parse_main(str);
+	//free(stri);
 
 
 	//addtolast(&this()->cmds, createnode(stri));
@@ -66,11 +67,12 @@ int	main(int ac, char **av, char **ev)
 	(void)i;
 
 	this()->env = create_env(ev);
-	testinit();
+	//testinit();
 
-	set_path(this()->cmds);
-	this()->cmds->input = open("a", O_RDONLY);
-	executor(this()->cmds);
+	close(heredocs("a"));
+	//set_path(this()->cmds);
+	//this()->cmds->input = open("a", O_RDONLY);
+	//executor(this()->cmds);
 	//set_path(this()->cmds);
 	//this()->cmds->input = open("a", O_RDONLY);
 	//executor(this()->cmds);
@@ -94,7 +96,7 @@ int	main(int ac, char **av, char **ev)
 		prints(this()->env[i], 1); */
 	//printf("Status: %d\n", this()->status);
 	//env(this()->cmds, this()->env, 1);
-	//free_matrix(this()->env);
+	free_matrix(this()->env);
 	rmlist(&this()->cmds);
 
 

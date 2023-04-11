@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:13:43 by hcoutinh          #+#    #+#             */
-/*   Updated: 2023/03/06 09:03:36 by grebin           ###   ########.fr       */
+/*   Updated: 2023/04/04 17:47:24 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ void	printlist(t_cmd *list)
 	j = 0;
 	while (list)
 	{
-		printf("LIST Nº%i\n", j);
+		printf("\nLIST Nº%i\n", j);
 		printf("PATH: %s\n", list->path);
+		printf("In: %i\nOut: %i\n", list->input, list->output);
 		i = -1;
 		while (list->cmd[++i])
 			printf("CMD[%i]: %s\n", i, list->cmd[i]);

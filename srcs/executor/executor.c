@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 08:20:18 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/28 14:30:46 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:20:30 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,21 @@ void builtins(t_cmd *cmd)
 	rmnode(&this()->cmds);
 }
 
+void	child(char **env, int input, int output)
+{
+	if(input != 0)
+			if (dup2(input, STDIN_FILENO) == -1)
+				prints("Error on first Dup2", 2);
+	if(output != 1)
+		if (dup2(output, STDOUT_FILENO) == -1)
+			prints("Error on second Dup2", 2);
+	if (execve(this()->cmds->path, this()->cmds->cmd, env) == -1)
+		prints("Error executing command", 2);
+	close(input);
+	close(output);
+	
+}
+
 int cmd_handler(char **env, int input, int output)
 {
 	this()->cmds->pid = fork();
@@ -50,10 +65,12 @@ int cmd_handler(char **env, int input, int output)
 		close(input);
 		close(output);
 	}
+		//child(env, input, output);
 	if (output != 1)
 		close(output);
 	if (input != 0)
 		close(input);
+	//printf("exit\n");
 	rmnode(&this()->cmds);
 	wait(NULL);
 	return (0);

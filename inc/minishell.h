@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 10:53:03 by gabriel           #+#    #+#             */
-/*   Updated: 2023/03/23 12:19:42 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/30 14:38:45 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,7 @@ int		token_helper(char *str, char c, int i);
 int		token_len(char *str);
 int		handle_commands(char *str);
 
-int		cmd_split(char **arg, int i);
-void parse_main(char **arg);
+void cmds_split(char **arg);
 
 //EXPANDER AREA
 t_env	*envs(void);

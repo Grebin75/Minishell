@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:38:11 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/28 16:01:03 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:22:59 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	red_handler(int i, char *file, int ncmd)
 {
-	int fd;
+	//printf("%d\n", i);
 	if (i == 1)
 		selectnode(this()->cmds, ncmd)->input = open(file, O_RDONLY);
 	if (i == 2)
@@ -25,15 +25,16 @@ void	red_handler(int i, char *file, int ncmd)
 		selectnode(this()->cmds, ncmd)->input = open(file, O_CREAT, O_APPEND, 0644);
 }
 
-char **fill_cmd(char **cmd, char *next)
+char **fill_cmd(char *next, int ncmd)
 {
 	char **temp;
+	char **cmd;
 	int	i;
 
-	i = -1;
-
+	i = 0;
+	cmd = selectnode(this()->cmds, ncmd)->cmd;
 	temp = alloc_matrix(cmd, 1);
-	while (cmd[++i])
+	while (cmd && cmd[i])
 	{
 		temp[i] = ft_strdup(cmd[i]);
 		if (!temp)
@@ -41,29 +42,28 @@ char **fill_cmd(char **cmd, char *next)
 			free_matrix(temp);
 			return (NULL); // EXIT PROG
 		}
+		i++;
 	}
-	temp[i] == NULL;
+	temp[i] = ft_strdup(next);
+	temp[++i] = NULL;
 	free_matrix(cmd);
-
-	return (cmd);
+	selectnode(this()->cmds, ncmd)->cmd = temp;
+	return (temp);
 }
 
 int	set_cmd(char **arg, int i, int ncmd)
 {
-	int	i;
-	char **cmd;
-
-	i = 0;
-	while (arg && arg[i] != '|')
+	while (arg && arg[i] && arg[i][0] != '|')
 	{
-		if((arg[i] == '<' || arg[i] == '>') && ft_strlen(arg[i]) == 2)
-			red_handler((arg[i] == '<') + (3 * (arg[i] == '>')) + ft_strlen(arg[i]) == 2, arg[i + 1], ncmd);
+		if((arg[i][0] == '<' || arg[i][0] == '>'))
+		{
+			red_handler((arg[i][0] == '<') + (3 * (arg[i][0] == '>')) + (ft_strlen(arg[i]) == 2), arg[i + 1], ncmd);
+		}
 		else
-			cmd = fill_cmd(cmd, arg[i]);
-		i += (arg[i] == '<' || arg[i] == '>') + 1;
+			fill_cmd(arg[i], ncmd);
+		i += (arg[i][0] == '<' || arg[i][0] == '>') + 1;
 	}
-	selectnode(this()->cmds, ncmd)->cmd = cmd;
-	return (i);
+	return (i + (arg[i] && arg[i][0] == '|'));
 }
 
 void cmds_split(char **arg)
@@ -76,7 +76,8 @@ void cmds_split(char **arg)
 	while (arg && arg[i])
 	{
 		addtolast(&this()->cmds, createnode(NULL));
-		i += set_cmd(arg, i, ncmd);
+		i = set_cmd(arg, i, ncmd);
+		//printf("%i\n", i);
 		ncmd++;
 	}
 	free_matrix(arg);

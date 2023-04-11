@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:13:25 by gabriel           #+#    #+#             */
-/*   Updated: 2023/03/28 14:41:21 by hcoutinh         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:24:38 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,18 @@ void testinit()
 	char **str;
 	//char **stri;
 
-	str = malloc(sizeof(char *) * (4 + 1));
+	str = malloc(sizeof(char *) * (2 + 1));
 	if (!str)
 		return ;
 	str[0] = alloc_string("grep");
-	str[1] = alloc_string("ab");
-	str[2] = alloc_string("<<");
-	str[3] = alloc_string("a");
-	str[4] = NULL;
+	str[1] = alloc_string("a");
+	/* str[2] = alloc_string("|");
+	str[3] = alloc_string("ahbad");
+	str[4] = alloc_string("<<");
+	str[5] = alloc_string("a");
+	str[6] = alloc_string("|");
+	str[7] = alloc_string("lsa"); */
+	str[2] = NULL;
 	//parse_main(str);
 	//cmd_split(str, 0);
 	//addtolast(&this()->cmds, createnode(str));
@@ -36,7 +40,7 @@ void testinit()
 	stri[0] = alloc_string("ls");
 	stri[1] = alloc_string("-l");
 	stri[2] = NULL; */
-	//parse_main(stri);
+	cmds_split(str);
 	//parse_main(str);
 	//free(stri);
 
@@ -67,9 +71,8 @@ int	main(int ac, char **av, char **ev)
 	(void)i;
 
 	this()->env = create_env(ev);
-	//testinit();
+	testinit();
 
-	close(heredocs("a"));
 	//set_path(this()->cmds);
 	//this()->cmds->input = open("a", O_RDONLY);
 	//executor(this()->cmds);
@@ -87,7 +90,9 @@ int	main(int ac, char **av, char **ev)
 	/* export(this()->cmds, this()->env);
 	export(this()->cmds->next, this()->env);
 	this()->cmds->output = open("output", O_WRONLY); */
-	//executor(this()->cmds);
+	set_path(this()->cmds);
+	printlist(this()->cmds);
+	executor(this()->cmds);
 	/* dup2(input, STDERR_FILENO);
 	dup2(output, STDOUT_FILENO); */
 	//printf("%s\n", this()->cmds);

@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:59:59 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/23 10:21:37 by grebin           ###   ########.fr       */
+/*   Updated: 2023/04/04 18:22:37 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	find_path(t_cmd *cmd, char *path)
 
 int set_path(t_cmd *cmd)
 {
+	printf("entrou\n");
 	if (cmd->path)
 	{
 		if (access(cmd->path, F_OK) == -1)

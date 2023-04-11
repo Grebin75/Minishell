@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hcoutinh <hcoutinh@student.42.fr>          +#+  +:+       +#+         #
+#    By: grebin <grebin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/25 10:52:52 by gabriel           #+#    #+#              #
-#    Updated: 2023/03/28 14:39:29 by hcoutinh         ###   ########.fr        #
+#    Updated: 2023/03/30 14:21:20 by grebin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ endif
 
 CC			= cc
 
-CFLAGS 		= -Wall -Wextra -Werror $(INC) -g #-fsanitize=address
+CFLAGS 		= -Wall -Wextra -Werror $(INC) -g -fsanitize=address
 
 RM 			= rm -rf
 

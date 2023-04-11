@@ -6,7 +6,7 @@
 /*   By: grebin <grebin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:22:25 by grebin            #+#    #+#             */
-/*   Updated: 2023/03/23 10:21:12 by grebin           ###   ########.fr       */
+/*   Updated: 2023/03/30 15:12:57 by grebin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,17 @@ char	**alloc_matrix(char **matrix, int change)
 
 	i = -1;
 	if (!matrix)
-		return (NULL);
+	{
+		if (change >= 1)
+		{
+			new = malloc(sizeof(char *) * (1 + change));
+			if (!new)
+				printerror("malloc error");
+		}
+		else
+			new = NULL;
+		return (new);
+	}
 	while (matrix[++i])
 		;
 	new = malloc(sizeof(char *) * ((i + 1) + change));
